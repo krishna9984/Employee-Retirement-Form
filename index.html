@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div class="login-container" id="login-section">
+            <div class="login-header">
+                <i class="fas fa-users-cog"></i>
+                <h1>Employee Management System</h1>
+                <p>Please select your role and login</p>
+            </div>
+            
+            <div class="role-selector">
+                <button class="role-btn active" data-role="employee">
+                    <i class="fas fa-user"></i>
+                    Employee Login
+                </button>
+                <button class="role-btn" data-role="admin">
+                    <i class="fas fa-user-shield"></i>
+                    Admin Login
+                </button>
+            </div>
+
+            <!-- Employee Login Form -->
+            <div class="login-form active" id="employee-login">
+                <h2>Employee Login</h2>
+                <form id="employeeForm">
+                    <div class="form-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="empId" placeholder="Employee ID" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="empPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </form>
+                <div class="demo-credentials">
+                    <h4>Demo Employee Credentials:</h4>
+                    <p>ID: EMP001 | Password: emp123</p>
+                    <p>ID: EMP002 | Password: emp456</p>
+                </div>
+            </div>
+
+            <!-- Admin Login Form -->
+            <div class="login-form" id="admin-login">
+                <h2>Admin Login</h2>
+                <form id="adminForm">
+                    <div class="form-group">
+                        <i class="fas fa-user-shield"></i>
+                        <input type="text" id="adminId" placeholder="Admin ID" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="adminPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </form>
+                <div class="demo-credentials">
+                    <h4>Demo Admin Credentials:</h4>
+                    <p>ID: ADMIN001 | Password: admin123</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Employee Dashboard Section -->
+        <div class="dashboard-section" id="employee-dashboard-section" style="display: none;">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Employee Portal</span>
+                </div>
+                <div class="nav-user">
+                    <span id="employeeName">Welcome, Employee</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+            </nav>
+
+            <div class="dashboard-container">
+                <div class="welcome-section">
+                    <h1>Employee Exit Form</h1>
+                    <p>Please fill out the exit form below to submit your resignation request.</p>
+                </div>
+
+                <div class="form-container">
+                    <form id="exitForm" class="exit-form">
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Employee Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="employeeId">Employee ID</label>
+                                    <input type="text" id="employeeId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="employeeName">Employee Name</label>
+                                    <input type="text" id="employeeNameField" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="employeeCategory">Employee Category *</label>
+                                    <select id="employeeCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="Full-time">Full-time</option>
+                                        <option value="Part-time">Part-time</option>
+                                        <option value="Contract">Contract</option>
+                                        <option value="Intern">Intern</option>
+                                        <option value="Temporary">Temporary</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resignationDate">Resignation Date *</label>
+                                    <input type="date" id="resignationDate" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-file-alt"></i> Resignation Details</h3>
+                            <div class="form-group">
+                                <label for="resignationReason">Reason for Resignation *</label>
+                                <select id="resignationReason" required>
+                                    <option value="">Select Reason</option>
+                                    <option value="Better Opportunity">Better Opportunity</option>
+                                    <option value="Personal Reasons">Personal Reasons</option>
+                                    <option value="Career Change">Career Change</option>
+                                    <option value="Health Issues">Health Issues</option>
+                                    <option value="Family Commitments">Family Commitments</option>
+                                    <option value="Relocation">Relocation</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="resignationDescription">Detailed Description *</label>
+                                <textarea id="resignationDescription" placeholder="Please provide detailed information about your resignation..." required rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastWorkingDay">Last Working Day *</label>
+                                <input type="date" id="lastWorkingDay" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-info-circle"></i> Additional Information</h3>
+                            <div class="form-group">
+                                <label for="noticePeriod">Notice Period (in days)</label>
+                                <input type="number" id="noticePeriod" placeholder="30" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="handoverNotes">Handover Notes</label>
+                                <textarea id="handoverNotes" placeholder="Any important information for handover..." rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i>
+                                Clear Form
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Resignation
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="status-section">
+                    <h3><i class="fas fa-history"></i> Your Resignation Status</h3>
+                    <div id="resignationStatus" class="status-display">
+                        <p>No resignation submitted yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard Section -->
+        <div class="dashboard-section" id="admin-dashboard-section" style="display: none;">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Admin Dashboard</span>
+                </div>
+                <div class="nav-user">
+                    <span id="adminName">Welcome, Admin</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+            </nav>
+
+            <div class="dashboard-container">
+                <!-- Statistics Cards -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalApplications">0</h3>
+                            <p>Total Applications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pendingApplications">0</h3>
+                            <p>Pending Applications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon accepted">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="acceptedApplications">0</h3>
+                            <p>Accepted Applications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon rejected">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="rejectedApplications">0</h3>
+                            <p>Rejected Applications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="filter-section">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search by employee ID or name...">
+                    </div>
+                    <div class="filter-options">
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                        <button class="btn-secondary" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Applications Table -->
+                <div class="table-container">
+                    <h3><i class="fas fa-list"></i> Resignation Applications</h3>
+                    <div class="table-wrapper">
+                        <table id="applicationsTable">
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Resignation Date</th>
+                                    <th>Last Working Day</th>
+                                    <th>Status</th>
+                                    <th>Submitted Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationsTableBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Detail Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-file-alt"></i> Application Details</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Application details will be populated here -->
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <!-- Action buttons will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Response Modal -->
+    <div id="responseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-comment"></i> Respond to Application</h2>
+                <span class="close" onclick="closeResponseModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="responseForm">
+                    <div class="form-group">
+                        <label for="responseStatus">Response</label>
+                        <select id="responseStatus" required>
+                            <option value="">Select Response</option>
+                            <option value="accepted">Accept</option>
+                            <option value="rejected">Reject</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminComment">Admin Comment</label>
+                        <textarea id="adminComment" placeholder="Enter your comment..." rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="responseDate">Response Date</label>
+                        <input type="date" id="responseDate" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeResponseModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitResponse()">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Response
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
